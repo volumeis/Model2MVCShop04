@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+.outframe{
+	border: 1px solid blue;
+	
+}
+
+.replyborder { 
+	border: 3px solid red;
+	height: 120px;
+	width: 880px;
+}
+.replyd1{
+	
+    height: 50px;
+    margin: 10px;
+    border-style: solid;	
+}
