@@ -21,13 +21,11 @@ public class ActionServlet extends HttpServlet {
 		super.init();
 		String resources=getServletConfig().getInitParameter("resources");
 		requestMapping=RequestMapping.getInstance(resources);
-		System.out.println("³­°ü");
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 																						throws ServletException, IOException {
-		System.out.println("Dtd");
 		String url = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String reqeustPath = url.substring(contextPath.length());

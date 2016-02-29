@@ -5,18 +5,32 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.user.UserService;
 import com.model2.mvc.service.user.impl.UserServiceImpl;
 
-
+//수정함
 public class ListUserAction extends Action {
 
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	
 	@Override
 	public String execute(HttpServletRequest request,	HttpServletResponse response) throws Exception {
 
+		ApplicationContext context =
+				new ClassPathXmlApplicationContext(	new String[] {	"/config/commonservice.xml"	 } );
+		
+		UserService userService = (UserService)context.getBean("userServiceImpl");
+		
 		Search search=new Search();
 		
 		int currentPage=1;
@@ -35,7 +49,6 @@ public class ListUserAction extends Action {
 		search.setPageSize(pageSize);
 		
 		// Business logic 수행
-		UserService userService=new UserServiceImpl();
 		Map<String , Object> map=userService.getUserList(search);
 		
 		Page resultPage	= 
