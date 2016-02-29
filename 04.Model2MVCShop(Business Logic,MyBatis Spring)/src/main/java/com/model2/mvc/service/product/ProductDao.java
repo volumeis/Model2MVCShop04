@@ -1,5 +1,6 @@
 package com.model2.mvc.service.product;
 
+import java.util.List;
 import java.util.Map;
 
 import com.model2.mvc.common.Search;
@@ -9,13 +10,13 @@ import com.model2.mvc.service.domain.Product;
 public interface ProductDao {
 	
 	//물품추가
-	public void insertProduct(Product product) throws Exception;
+	public void addProduct(Product product) throws Exception;
 	
 	//물품정보가져오기
-	public Product findProduct(int productNo) throws Exception;
+	public Product getProduct(int productNo) throws Exception;
 
 	//물품리스트가져오기
-	public Map<String,Object> getProductList(Search search) throws Exception;
+	public List<Product> getProductList(Search search) throws Exception;
 
 	//물품정보수정
 	public void updateProduct(Product product) throws Exception;

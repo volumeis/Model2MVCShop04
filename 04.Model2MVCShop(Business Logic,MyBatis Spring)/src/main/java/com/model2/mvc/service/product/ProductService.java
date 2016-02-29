@@ -8,12 +8,12 @@ import com.model2.mvc.service.domain.Product;
 //==> 물품관리에서 서비스할 내용 추상화/캡슐화한 Service  Interface Definition  
 public interface ProductService {
 	
-	public void addProduct(Product productVO) throws Exception;
+	public void addProduct(Product product) throws Exception;
 
-	public Product getProduct(int prodNo) throws Exception;
+	public Product getProduct(int productNo) throws Exception;
 
-	public Map<String,Object> getProductList(Search searchVO) throws Exception;
+	public Map<String,Object> getProductList(Search search) throws Exception;
 
-	public void updateProduct(Product productVO) throws Exception;
+	public void updateProduct(Product product) throws Exception;
 	
 }

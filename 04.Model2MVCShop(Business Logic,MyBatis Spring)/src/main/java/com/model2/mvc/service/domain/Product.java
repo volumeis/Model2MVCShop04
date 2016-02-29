@@ -5,12 +5,13 @@ import java.sql.Date;
 
 public class Product {
 	
-	private String fileName;
+	
+	private int prodNo;
+	private String prodName;
+	private String prodDetail;
 	private String manuDate;
 	private int price;
-	private String prodDetail;
-	private String prodName;
-	private int prodNo;
+	private String fileName;
 	private Date regDate;
 	private String proTranCode;
 	
