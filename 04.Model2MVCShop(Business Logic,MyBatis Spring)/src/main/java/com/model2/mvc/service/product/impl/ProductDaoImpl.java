@@ -23,7 +23,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public void addProduct(Product product) throws Exception {
-		sqlSession.insert("ProductMapper.addProduct");
+		sqlSession.insert("ProductMapper.addProduct",product);
 	}
 
 	@Override

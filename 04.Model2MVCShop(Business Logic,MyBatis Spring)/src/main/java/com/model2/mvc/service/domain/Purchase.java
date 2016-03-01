@@ -5,17 +5,18 @@ import java.sql.Date;
 
 public class Purchase {
 	
-	private User buyer;
-	private String divyAddr;
-	private String divyDate;
-	private String divyRequest;
-	private Date orderDate;
-	private String paymentOption;
+
+	private int tranNo;
 	private Product purchaseProd;
+	private User buyer;
+	private String paymentOption;
 	private String receiverName;
 	private String receiverPhone;
+	private String dlvyAddr;
+	private String dlvyRequest;
 	private String tranCode;
-	private int tranNo;
+	private Date orderDate;
+	private String dlvyDate;
 	
 	public Purchase(){
 	}
@@ -27,22 +28,22 @@ public class Purchase {
 		this.buyer = buyer;
 	}
 	public String getDivyAddr() {
-		return divyAddr;
+		return dlvyAddr;
 	}
-	public void setDivyAddr(String divyAddr) {
-		this.divyAddr = divyAddr;
+	public void setDlvyAddr(String dlvyAddr) {
+		this.dlvyAddr = dlvyAddr;
 	}
-	public String getDivyDate() {
-		return divyDate;
+	public String getDlvyDate() {
+		return dlvyDate;
 	}
-	public void setDivyDate(String divyDate) {
-		this.divyDate = divyDate;
+	public void setDlvyDate(String dlvyDate) {
+		this.dlvyDate = dlvyDate;
 	}
-	public String getDivyRequest() {
-		return divyRequest;
+	public String getDlvyRequest() {
+		return dlvyRequest;
 	}
-	public void setDivyRequest(String divyRequest) {
-		this.divyRequest = divyRequest;
+	public void setDlvyRequest(String divyRequest) {
+		this.dlvyRequest = divyRequest;
 	}
 	public Date getOrderDate() {
 		return orderDate;
@@ -89,8 +90,8 @@ public class Purchase {
 	
 	@Override
 	public String toString() {
-		return "PurchaseVO [buyer=" + buyer + ", divyAddr=" + divyAddr
-				+ ", divyDate=" + divyDate + ", divyRequest=" + divyRequest
+		return "PurchaseVO [buyer=" + buyer + ", dlvyAddr=" + dlvyAddr
+				+ ", dlvyDate=" + dlvyDate + ", dlvyRequest=" + dlvyRequest
 				+ ", orderDate=" + orderDate + ", paymentOption="
 				+ paymentOption + ", purchaseProd=" + purchaseProd
 				+ ", receiverName=" + receiverName + ", receiverPhone="

@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 	public ProductServiceImpl() {
 		System.out.println(this.getClass());
 	}
-	public ProductServiceImpl(ProductDao productDao) {
+	public void setProductServiceImpl(ProductDao productDao) {
 		this.productDao = productDao;
 	}
 	

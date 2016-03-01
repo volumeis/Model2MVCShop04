@@ -12,7 +12,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.model2.mvc.common.Search;
+import com.model2.mvc.service.domain.Product;
+import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.domain.User;
+import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.user.UserService;
 
 /*
@@ -25,13 +29,14 @@ import com.model2.mvc.service.user.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/commonservice.xml" })
-public class UserServiceTest {
+public class PurchaseServiceTest {
 
 	// ==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
-	@Qualifier("userServiceImpl")
-	private UserService userService;
+	@Qualifier("purchaseServiceImpl")
+	private PurchaseService purchaseService;
 
+	/*
 	// @Test
 	public void testAddUser() throws Exception {
 
@@ -59,11 +64,11 @@ public class UserServiceTest {
 		Assert.assertEquals("경기도", user.getAddr());
 		Assert.assertEquals("test@test.com", user.getEmail());
 	}
+	*/
+	@Test
+	public void testGetPurchase() throws Exception {
 
-	 @Test
-	public void testGetUser() throws Exception {
-
-		User user = new User();
+		Purchase pchase = new Purchase();
 		// ==> 필요하다면...
 		// user.setUserId("testUserId");
 		// user.setUserName("testUserName");
@@ -73,23 +78,15 @@ public class UserServiceTest {
 		// user.setAddr("경기도");
 		// user.setEmail("test@test.com");
 
-		user = userService.getUser("testUserId");
+		pchase = purchaseService.getPurchaseByTranNo(10006);
 
 		// ==> console 확인
 		// System.out.println(user);
 
 		// ==> API 확인
-		Assert.assertEquals("testUserId", user.getUserId());
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("testPasswd", user.getPassword());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
-
-		Assert.assertNotNull(userService.getUser("user02"));
-		Assert.assertNotNull(userService.getUser("user05"));
+		Assert.assertEquals(10006, pchase.getTranNo());
 	}
-
+	/*
 	// @Test
 	public void testUpdateUser() throws Exception {
 
@@ -120,8 +117,9 @@ public class UserServiceTest {
 		Assert.assertEquals("change", user.getAddr());
 		Assert.assertEquals("change@change.com", user.getEmail());
 	}
-
-	//@Test
+	*/
+	/*
+	// @Test
 	public void testCheckDuplication() throws Exception {
 
 		// ==> 필요하다면...
@@ -146,9 +144,10 @@ public class UserServiceTest {
 		Assert.assertTrue(userService.checkDuplication("testUserId" + System.currentTimeMillis()));
 
 	}
-
+	*/
+	/*
 	// ==> 주석을 풀고 실행하면....
-	@Test
+	// @Test
 	public void testGetUserListAll() throws Exception {
 
 		Search search = new Search();
@@ -182,8 +181,9 @@ public class UserServiceTest {
 		totalCount = (Integer) map.get("totalCount");
 		System.out.println(totalCount);
 	}
-
-	@Test
+	*/
+	/*
+	// @Test
 	public void testGetUserListByUserId() throws Exception {
 
 		Search search = new Search();
@@ -217,7 +217,8 @@ public class UserServiceTest {
 		totalCount = (Integer) map.get("totalCount");
 		System.out.println(totalCount);
 	}
-
+	*/
+	/*
 	@Test
 	public void testGetUserListByUserName() throws Exception {
 
@@ -252,4 +253,5 @@ public class UserServiceTest {
 		totalCount = (Integer) map.get("totalCount");
 		System.out.println(totalCount);
 	}
+	*/
 }
