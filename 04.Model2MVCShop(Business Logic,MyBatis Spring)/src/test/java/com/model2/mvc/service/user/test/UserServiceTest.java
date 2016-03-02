@@ -60,7 +60,7 @@ public class UserServiceTest {
 		Assert.assertEquals("test@test.com", user.getEmail());
 	}
 
-	 @Test
+	// @Test
 	public void testGetUser() throws Exception {
 
 		User user = new User();
@@ -74,18 +74,18 @@ public class UserServiceTest {
 		// user.setEmail("test@test.com");
 
 		user = userService.getUser("testUserId");
-
+	
 		// ==> console 확인
 		// System.out.println(user);
 
 		// ==> API 확인
-		Assert.assertEquals("testUserId", user.getUserId());
+		/*Assert.assertEquals("testUserId", user.getUserId());
 		Assert.assertEquals("testUserName", user.getUserName());
 		Assert.assertEquals("testPasswd", user.getPassword());
 		Assert.assertEquals("111-2222-3333", user.getPhone());
 		Assert.assertEquals("경기도", user.getAddr());
 		Assert.assertEquals("test@test.com", user.getEmail());
-
+*/
 		Assert.assertNotNull(userService.getUser("user02"));
 		Assert.assertNotNull(userService.getUser("user05"));
 	}
@@ -148,7 +148,7 @@ public class UserServiceTest {
 	}
 
 	// ==> 주석을 풀고 실행하면....
-	@Test
+	//@Test
 	public void testGetUserListAll() throws Exception {
 
 		Search search = new Search();
@@ -183,7 +183,7 @@ public class UserServiceTest {
 		System.out.println(totalCount);
 	}
 
-	@Test
+	//@Test
 	public void testGetUserListByUserId() throws Exception {
 
 		Search search = new Search();
@@ -218,7 +218,7 @@ public class UserServiceTest {
 		System.out.println(totalCount);
 	}
 
-	@Test
+	//@Test
 	public void testGetUserListByUserName() throws Exception {
 
 		Search search = new Search();

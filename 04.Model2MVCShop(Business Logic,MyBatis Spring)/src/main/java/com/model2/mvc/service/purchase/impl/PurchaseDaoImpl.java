@@ -21,11 +21,11 @@ public class PurchaseDaoImpl implements PurchaseDao {
 	//Field
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
-	private SqlSession sqlSession;	
+	private SqlSession sqlSession;
 	
 	@Override
 	public void addPurchase(Purchase purchase) throws Exception {
-		sqlSession.insert("PurchaseMapper.addPurchase");		
+		sqlSession.insert("PurchaseMapper.addPurchase",purchase);		
 	}
 
 	@Override
@@ -43,26 +43,26 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		Map<String, Object> purchaseMapSource = new HashMap<String, Object>();
 		purchaseMapSource.put("search", search);
 		purchaseMapSource.put("buyerId", buyerId);
-		return sqlSession.selectList("PurchaseService.getPurchaseList", purchaseMapSource);
+		return sqlSession.selectList("PurchaseMapper.getPurchaseList", purchaseMapSource);
 	}
 
 	@Override
 	public List<Purchase> getSaleList(Search search) throws Exception {
-		return sqlSession.selectList("PurchaseService.getSaleList", search);
+		return sqlSession.selectList("PurchaseMapper.getSaleList", search);
 	}
 
 	@Override
 	public void updatePurcahse(Purchase purchase) throws Exception {
-		sqlSession.update("PurchaseService.updatePurchase",purchase);		
+		sqlSession.update("PurchaseMapper.updatePurchase",purchase);		
 	}
 
 	@Override
 	public void updateTranCode(Purchase purchase) throws Exception {
-		sqlSession.update("PurchaseService.updateTranCode",purchase);
+		sqlSession.update("PurchaseMapper.updateTranCode",purchase);
 	}
 	
 	@Override
 	public int getTotalCount(Search search) throws Exception {
-		return sqlSession.selectOne("PurchaseService.getTotalCount", search);
+		return sqlSession.selectOne("PurchaseMapper.getTotalCount", search);
 	}
 }

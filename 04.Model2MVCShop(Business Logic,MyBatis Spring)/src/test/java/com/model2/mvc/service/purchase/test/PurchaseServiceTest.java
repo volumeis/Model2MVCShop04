@@ -1,5 +1,7 @@
-package com.model2.mvc.service.user.test;
+package com.model2.mvc.service.purchase.test;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
+import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.domain.User;
-import com.model2.mvc.service.product.ProductService;
-import com.model2.mvc.service.user.UserService;
+import com.model2.mvc.service.purchase.PurchaseService;
 
 /*
  *	FileName :  UserServiceTest.java
@@ -27,46 +29,56 @@ import com.model2.mvc.service.user.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/commonservice.xml" })
-public class ProductServiceTest {
+public class PurchaseServiceTest {
 
 	// ==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
-	@Qualifier("productServiceImpl")
-	private ProductService productService;
+	@Qualifier("purchaseServiceImpl")
+	private PurchaseService purchaseService;
 
-	/*
-	// @Test
+	
+	//@Test
 	public void testAddUser() throws Exception {
 
+		Purchase purchase = new Purchase();
+		
 		User user = new User();
-		user.setUserId("testUserId");
-		user.setUserName("testUserName");
-		user.setPassword("testPasswd");
-		user.setSsn("1111112222222");
-		user.setPhone("111-2222-3333");
-		user.setAddr("경기도");
-		user.setEmail("test@test.com");
-
-		userService.addUser(user);
-
-		user = userService.getUser("testUserId");
-
-		// ==> console 확인
-		// System.out.println(user);
-
-		// ==> API 확인
-		Assert.assertEquals("testUserId", user.getUserId());
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("testPasswd", user.getPassword());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
-	}
-	*/
-	@Test
-	public void testGetProduct() throws Exception {
-
+		user.setUserId("user12");
+		
 		Product product = new Product();
+		product.setProdNo(10080);
+		
+		//purchase.setTranNo(9999);
+		purchase.setPurchaseProd(product);
+		purchase.setBuyer(user);
+		purchase.setPaymentOption("1");
+		purchase.setReceiverName("12a34");
+		purchase.setReceiverPhone("asdf");
+		purchase.setDlvyAddr("qqwe");
+		purchase.setDlvyRequest("zzxc");
+		purchase.setTranCode("2");
+		purchase.setOrderDate(new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-21").getTime() ));
+		//purchase.setDlvyDate("2100-12-12");
+		//System.out.println(""+ purchase.getBuyer() + ": " + purchase.getPurchaseProd());
+		
+		System.out.println(purchase);
+		purchaseService.addPurchase(purchase);
+
+		//purchase = purchaseService.getPurchaseByTranNo(10066);
+
+
+		// ==> console 확인
+		// System.out.println(user);
+
+		// ==> API 확인
+		//Assert.assertEquals("2010-12-21", purchase.getOrderDate());
+		//Assert.assertEquals("2100-12-12", purchase.getDlvyDate());
+	}
+	
+	//@Test
+	public void getPurchaseByTranNo() throws Exception {
+
+		Purchase pchase = new Purchase();
 		// ==> 필요하다면...
 		// user.setUserId("testUserId");
 		// user.setUserName("testUserName");
@@ -75,53 +87,22 @@ public class ProductServiceTest {
 		// user.setPhone("111-2222-3333");
 		// user.setAddr("경기도");
 		// user.setEmail("test@test.com");
-
-		product = productService.getProduct(10080);
-
-		// ==> console 확인
-		// System.out.println(user);
-
-		// ==> API 확인
-		Assert.assertEquals(10080, product.getProdNo());
-	}
-	/*
-	// @Test
-	public void testUpdateUser() throws Exception {
-
-		User user = userService.getUser("testUserId");
-		Assert.assertNotNull(user);
-
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
-
-		user.setUserName("change");
-		user.setPhone("777-7777-7777");
-		user.setAddr("change");
-		user.setEmail("change@change.com");
-
-		userService.updateUser(user);
-
-		user = userService.getUser("testUserId");
-		Assert.assertNotNull(user);
+		//pchase.setTranNo(10066);
+		//pchase = purchaseService.getPurchaseByTranNo(10006);
 
 		// ==> console 확인
 		// System.out.println(user);
-
+		pchase = purchaseService.getPurchaseByTranNo(10066);
+		System.out.println(pchase);
 		// ==> API 확인
-		Assert.assertEquals("change", user.getUserName());
-		Assert.assertEquals("777-7777-7777", user.getPhone());
-		Assert.assertEquals("change", user.getAddr());
-		Assert.assertEquals("change@change.com", user.getEmail());
+		Assert.assertEquals(10066, pchase.getTranNo());
 	}
-	*/
-	/*
-	// @Test
-	public void testCheckDuplication() throws Exception {
+	
+	//@Test
+	public void getPurchaseByProdNo() throws Exception {
 
+		Purchase pchase = new Purchase();
 		// ==> 필요하다면...
-		// User user = new User();
 		// user.setUserId("testUserId");
 		// user.setUserName("testUserName");
 		// user.setPassword("testPasswd");
@@ -129,35 +110,44 @@ public class ProductServiceTest {
 		// user.setPhone("111-2222-3333");
 		// user.setAddr("경기도");
 		// user.setEmail("test@test.com");
-		//
-		// userService.addUser(user);
+		//pchase.setTranNo(10066);
+		//pchase = purchaseService.getPurchaseByTranNo(10006);
 
 		// ==> console 확인
-		// System.out.println(userService.checkDuplication("testUserId"));
-		// System.out.println(userService.checkDuplication("testUserId"+System.currentTimeMillis())
-		// );
-
+		// System.out.println(user);
+		pchase = purchaseService.getPurchaseByProdNo(10120);
+		System.out.println(pchase);
 		// ==> API 확인
-		Assert.assertFalse(userService.checkDuplication("testUserId"));
-		Assert.assertTrue(userService.checkDuplication("testUserId" + System.currentTimeMillis()));
-
+		Assert.assertEquals(10083, pchase.getTranNo());
 	}
-	*/
-	/*
+	
+	//@Test
+	public void updateTranCode() throws Exception {
+
+		Purchase purchase = new Purchase();
+		purchase = purchaseService.getPurchaseByTranNo(10083);
+		//Assert.assertEquals("2  ",purchase.getTranCode());
+		System.out.println(purchase.getTranCode());
+		purchase.setTranCode("1");		
+		purchaseService.updateTranCode(purchase);
+		purchase = purchaseService.getPurchaseByTranNo(10083);
+		Assert.assertEquals("1  ",purchase.getTranCode());
+	}
+	
 	// ==> 주석을 풀고 실행하면....
-	// @Test
-	public void testGetUserListAll() throws Exception {
+	//@Test
+	public void getPurchaseList() throws Exception {
 
 		Search search = new Search();
 		search.setCurrentPage(1);
 		search.setPageSize(3);
-		Map<String, Object> map = userService.getUserList(search);
+		Map<String, Object> map = purchaseService.getPurchaseList(search, "user02");
 
 		List<Object> list = (List<Object>) map.get("list");
 		Assert.assertEquals(3, list.size());
 
 		// ==> console 확인
-		// System.out.println(list);
+		System.out.println("1list : " + list);
 
 		Integer totalCount = (Integer) map.get("totalCount");
 		System.out.println(totalCount);
@@ -168,7 +158,7 @@ public class ProductServiceTest {
 		search.setPageSize(3);
 		search.setSearchCondition("0");
 		search.setSearchKeyword("");
-		map = userService.getUserList(search);
+		map = purchaseService.getPurchaseList(search, "user02");
 
 		list = (List<Object>) map.get("list");
 		Assert.assertEquals(3, list.size());
@@ -179,17 +169,15 @@ public class ProductServiceTest {
 		totalCount = (Integer) map.get("totalCount");
 		System.out.println(totalCount);
 	}
-	*/
-	/*
-	// @Test
-	public void testGetUserListByUserId() throws Exception {
+	 @Test
+	public void testGetSaleList() throws Exception {
 
 		Search search = new Search();
 		search.setCurrentPage(1);
-		search.setPageSize(3);
-		search.setSearchCondition("0");
-		search.setSearchKeyword("admin");
-		Map<String, Object> map = userService.getUserList(search);
+		search.setPageSize(15);
+		//search.setSearchCondition("0");
+		//search.setSearchKeyword("admin");
+		Map<String, Object> map = purchaseService.getSaleList(search);
 
 		List<Object> list = (List<Object>) map.get("list");
 		Assert.assertEquals(1, list.size());
@@ -204,7 +192,7 @@ public class ProductServiceTest {
 
 		search.setSearchCondition("0");
 		search.setSearchKeyword("" + System.currentTimeMillis());
-		map = userService.getUserList(search);
+		map =  purchaseService.getSaleList(search);
 
 		list = (List<Object>) map.get("list");
 		Assert.assertEquals(0, list.size());
@@ -215,7 +203,7 @@ public class ProductServiceTest {
 		totalCount = (Integer) map.get("totalCount");
 		System.out.println(totalCount);
 	}
-	*/
+	
 	/*
 	@Test
 	public void testGetUserListByUserName() throws Exception {

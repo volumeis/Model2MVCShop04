@@ -45,6 +45,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		List<Purchase> list = purchaseDao.getPurchaseList(search, buyerId);
 		int totalCount = purchaseDao.getTotalCount(search);
 		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("totalCount",totalCount);
@@ -55,7 +56,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public Map<String, Object> getSaleList(Search search) throws Exception {
 		List<Purchase> list = purchaseDao.getSaleList(search);
 		int totalCount = purchaseDao.getTotalCount(search);
-		
+		System.out.println(list);
+		System.out.println("in service totalcount : "+ totalCount);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("totalCount",totalCount);
@@ -70,6 +72,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public void updateTranCode(Purchase purchase) throws Exception {
 		purchaseDao.updateTranCode(purchase);	
 	}
+	
 
 
 }

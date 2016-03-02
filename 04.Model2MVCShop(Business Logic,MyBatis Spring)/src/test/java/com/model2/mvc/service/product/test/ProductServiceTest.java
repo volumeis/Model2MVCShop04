@@ -1,7 +1,4 @@
-package com.model2.mvc.service.user.test;
-
-import java.util.List;
-import java.util.Map;
+package com.model2.mvc.service.product.test;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,13 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
-import com.model2.mvc.service.domain.Purchase;
-import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.product.ProductService;
-import com.model2.mvc.service.purchase.PurchaseService;
-import com.model2.mvc.service.user.UserService;
 
 /*
  *	FileName :  UserServiceTest.java
@@ -29,12 +21,12 @@ import com.model2.mvc.service.user.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/commonservice.xml" })
-public class PurchaseServiceTest {
+public class ProductServiceTest {
 
 	// ==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
-	@Qualifier("purchaseServiceImpl")
-	private PurchaseService purchaseService;
+	@Qualifier("productServiceImpl")
+	private ProductService productService;
 
 	/*
 	// @Test
@@ -66,9 +58,9 @@ public class PurchaseServiceTest {
 	}
 	*/
 	@Test
-	public void testGetPurchase() throws Exception {
+	public void testGetProduct() throws Exception {
 
-		Purchase pchase = new Purchase();
+		Product product = new Product();
 		// ==> 필요하다면...
 		// user.setUserId("testUserId");
 		// user.setUserName("testUserName");
@@ -78,13 +70,13 @@ public class PurchaseServiceTest {
 		// user.setAddr("경기도");
 		// user.setEmail("test@test.com");
 
-		pchase = purchaseService.getPurchaseByTranNo(10006);
+		product = productService.getProduct(10080);
 
 		// ==> console 확인
 		// System.out.println(user);
 
 		// ==> API 확인
-		Assert.assertEquals(10006, pchase.getTranNo());
+		Assert.assertEquals(10080, product.getProdNo());
 	}
 	/*
 	// @Test

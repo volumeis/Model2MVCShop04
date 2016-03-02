@@ -27,7 +27,7 @@ public class Purchase {
 	public void setBuyer(User buyer) {
 		this.buyer = buyer;
 	}
-	public String getDivyAddr() {
+	public String getDlvyAddr() {
 		return dlvyAddr;
 	}
 	public void setDlvyAddr(String dlvyAddr) {
@@ -96,6 +96,6 @@ public class Purchase {
 				+ paymentOption + ", purchaseProd=" + purchaseProd
 				+ ", receiverName=" + receiverName + ", receiverPhone="
 				+ receiverPhone + ", tranCode=" + tranCode + ", tranNo="
-				+ tranNo + "]";
+				+ tranNo + "]\n";
 	}
 }
